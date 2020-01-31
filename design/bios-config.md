@@ -75,10 +75,9 @@ spec:
    credentialsName: bm0-bmc-secret
  bootMACAddress: 52:54:00:b7:b2:6f	
  bios:
-   EnableSriovGlobal: false
-   EnableVirtualization: false
-   EnableHyperThreading: true
-   EnableAdjCacheLine: false
+   sriovEnabled: false
+   virtualizationDisabled: false
+   simultaneousMultiThreadingDisabled: false
 ```
 
 The user can only specify the BIOS values related to the BMC type being used as they will be validated accordingly.
@@ -91,7 +90,7 @@ None
 
 ## Design Details
 
-The BIOS config is only possible when the host is in cleaning state and the input is to be given as a set of cleaning steps.
+This BIOS config will be implemented through Ironic ```vendorPassthru```. These settings will only be applied to a host when it is being provisioned with an image. A change in BIOS configs on a host with running workload will NOT trigger reprovisioning.
 
 The code changes required would entail 
 - Creating a go struct with the BIOS configs in the ```ironic.go (pkg/provisioner/ironic/ironic.go)```
