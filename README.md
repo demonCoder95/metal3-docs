@@ -1,4 +1,4 @@
-# Metal³ Documentation
+# Metal³ Documentations
 
 ![Metal³ Logo](images/metal3.png)
 
